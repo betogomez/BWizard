@@ -1,0 +1,80 @@
+/**
+ * BWizard Framework
+ * Copyright 2008 - 2009 Carlos Alberto Gomez Ormachea
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ */
+
+package org.bwizard;
+
+/**
+ * This exception is thrown by {@link WizardStep} instances if the call to
+ * {@link WizardStep#applyState} can't be full filled. By default this
+ * exception's message will be displayed to the user. To disable this feature,
+ * please ensure you call {@link #setShowUser} with the value of <tt>false</tt>.
+ * 
+ * @author Carlos Alberto Gomez Ormachea
+ * @version 2.0, 03/07/2009
+ */
+public class InvalidStateException extends Exception {
+
+	private static final long serialVersionUID = 1L;
+
+	private boolean showUser = true;
+
+	public InvalidStateException() {
+		this.showUser = false;
+	}
+
+	public InvalidStateException(String message) {
+		this(message, true);
+	}
+
+	public InvalidStateException(String message, Throwable cause) {
+		this(message, cause, true);
+	}
+
+	public InvalidStateException(String message, boolean showUser) {
+		super(message);
+		this.showUser = showUser;
+	}
+
+	public InvalidStateException(String message, Throwable cause,
+			boolean showUser) {
+		super(message, cause);
+		this.showUser = showUser;
+	}
+
+	/**
+	 * Checks if this exception should be presented to the user.
+	 * 
+	 * @return <tt>true</tt> to present the exception to the user,
+	 *         <tt>false</tt> otherwise.
+	 */
+	public boolean isShowUser() {
+		return showUser;
+	}
+
+	/**
+	 * Configures if this exception should be presented to the user.
+	 * 
+	 * @param showUser
+	 *            <tt>true</tt> to present the exception to the user,
+	 *            <tt>false</tt> otherwise.
+	 */
+	public void setShowUser(boolean showUser) {
+		this.showUser = showUser;
+	}
+}
